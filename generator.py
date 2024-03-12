@@ -16,10 +16,13 @@ quotes = ["With great power comes great responsibility. - Uncle Ben, Spiderman",
           "You can be young without money but you can't be old without it. - Tennessee Williams",
           "Money is like manure; it's not worth a thing unless it's spread around. - Brooke Astor",
           "Don't stay in bed, unless you can make money in bed. - George Burns"]
-lotto_type = st.selectbox("What type of lotto are you entering?", types)
-max_range = 58
-num_sets = st.number_input("How many sets do you want to fill in?", min_value=0, max_value=6, value="min", step=1, format="%d", key="sets")
-include_quotes = st.selectbox("Do you want a complementary inspirational quote with each set?", ["Yes", "No"])
+
+with st.form("factors"):
+	lotto_type = st.selectbox("What type of lotto are you entering?", types)
+	max_range = 58
+	num_sets = st.number_input("How many sets do you want to fill in?", min_value=1, max_value=6, value="min", step=1, format="%d", key="sets")
+	include_quotes = st.selectbox("Do you want a complementary inspirational quote with each set?", ["Yes", "No"])
+    submit = st.form_submit_button("Generate numbers!")
 
 if lotto_type == types[1]: # I am NOT typing "Grand Lotto 6/55" out.
     max_range = 55
@@ -30,14 +33,15 @@ elif lotto_type == types[3]:
 elif lotto_type == types[4]:
     max_range = 42
 
-for i in range(num_sets):
-    cur_set = []
-    j = 0
-    while len(cur_set) < 6:
-        num = random.randint(1, max_range)
-        if num not in cur_set:
-            cur_set.append(num)
-    cur_set.sort()
-    st.write(f"Set {i + 1}: {cur_set}")
-    if include_quotes == "Yes":
-        st.write(quotes[sum(cur_set) % 10])
+if submit:
+    for i in range(num_sets):
+        cur_set = []
+        j = 0
+        while len(cur_set) < 6:
+            num = random.randint(1, max_range)
+            if num not in cur_set:
+                cur_set.append(num)
+        cur_set.sort()
+        st.write(f"Set {i + 1}: {cur_set}")
+        if include_quotes == "Yes":
+            st.write(quotes[sum(cur_set) % 10])
