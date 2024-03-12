@@ -22,7 +22,7 @@ with st.form("factors"):
 	max_range = 58
 	num_sets = st.number_input("How many sets do you want to fill in?", min_value=1, max_value=6, value="min", step=1, format="%d", key="sets")
 	include_quotes = st.selectbox("Do you want a complementary inspirational quote with each set?", ["Yes", "No"])
-    submit = st.form_submit_button("Generate numbers!")
+	submit = st.form_submit_button("Generate numbers!")
 
 if lotto_type == types[1]: # I am NOT typing "Grand Lotto 6/55" out.
     max_range = 55
