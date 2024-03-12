@@ -17,9 +17,9 @@ quotes = ["With great power comes great responsibility. - Uncle Ben, Spiderman",
           "Money is like manure; it's not worth a thing unless it's spread around. - Brooke Astor",
           "Don't stay in bed, unless you can make money in bed. - George Burns"]
 
+max_range = 58
 with st.form("factors"):
 	lotto_type = st.selectbox("What type of lotto are you entering?", types)
-	max_range = 58
 	num_sets = st.number_input("How many sets do you want to fill in?", min_value=1, max_value=6, value="min", step=1, format="%d", key="sets")
 	include_quotes = st.selectbox("Do you want a complementary inspirational quote with each set?", ["Yes", "No"])
 	submit = st.form_submit_button("Generate numbers!")
